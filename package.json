@@ -1,0 +1,16 @@
+{
+  "name": "shoala-al-tomoh-website",
+  "version": "1.0.0",
+  "description": "الموقع الرسمي لشركة شعلة الطموح التجارية",
+  "main": "index.html",
+  "scripts": {
+    "dev": "npx http-server -p 8080 -c-1"
+  },
+  "keywords": [],
+  "author": "Flame of Ambition Co.",
+  "license": "ISC",
+  "dependencies": {},
+  "devDependencies": {
+    "http-server": "^14.1.1"
+  }
+}
