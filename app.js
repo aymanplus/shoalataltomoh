@@ -177,7 +177,7 @@ const products = [
     id: "tayeb-cheese-olives",
     brand: "tayeb",
     category: "cheese",
-    name: "جبن فيتا بالزيتون الأخضر",
+    name: "جبن فيتا جولد بطعم الرومي المعتق",
     image: "صور%20المنتجات/مملكه%20الطيب/الاجبان/a%20(10).png",
     description: "مكعبات جبن بيضاء ممزوجة بقطع الزيتون الأخضر وزيت الزيتون والأعشاب البرية العطرية لتضفي طعماً ساحراً.",
     specs: [
@@ -192,14 +192,14 @@ const products = [
     id: "tayeb-cheese-akkawi",
     brand: "tayeb",
     category: "cheese",
-    name: "قشطة طازجة",
+    name: "قشطة مائدة",
     image: "صور%20المنتجات/مملكه%20الطيب/الاجبان/a%20(7).png",
-    description: "جبن عكاوي أبيض مخصص لصناعة الكنافة والحلويات والمعجنات الفاخرة، يمتاز بمرونته ومطاطيته العالية عند الذوبان.",
+    description: "قشطة طازجة غنية ودسمة مخصصة للاستخدام اليومي على المائدة، مثالية للفطور والحلويات الشرقية وتقديمها مع العسل أو المربى.",
     specs: [
-      "حليب بقري مبستر نقي 100%",
-      "نسبة ملوحة تقليدية يتم التخلص منها بسهولة بالتحلية (النقع بالماء)",
-      "مطاطية ممتازة وهيكل متماسك عند درجات الحرارة المرتفعة",
-      "مفضل لدى كبرى محلات الحلويات بالمملكة"
+      "مصنوعة من حليب بقري مبستر عالي الجودة",
+      "قوام كريمي ناعم وسهل الفرد",
+      "طعم غني ومتوازن",
+      "مناسبة للاستخدام المباشر دون طبخ"
     ],
     sizes: ["2 كجم", "10 كجم (قوالب تجارية)"]
   },
@@ -207,14 +207,14 @@ const products = [
     id: "tayeb-cheese-quresh",
     brand: "tayeb",
     category: "cheese",
-    name: "قشطة بلدي",
+    name: "قشطة حلويات",
     image: "صور%20المنتجات/مملكه%20الطيب/الاجبان/a%20(11).png",
-    description: "جبن قريش طبيعي تقليدي غني ببروتين الكازين، خالي تماماً من أي دهون أو زيوت مضافة وملح خفيف جداً، رائع لبناء العضلات والتخسيس.",
+    description: "قشطة مخصصة لتحضير الحلويات الشرقية والغربية، تتميز بثباتها العالي عند الخَبز والطهي وقوامها المثالي للحشو والتزيين.",
     specs: [
-      "مصنوع من حليب طبيعي طازج منزوع الدسم 100%",
-      "ملح خفيف جداً 0.8%",
-      "قوام رطب وخفيف بنسبة رطوبة متزنة",
-      "بدون أي مواد حافظة أو زيوت مهدرجة"
+      "ثبات ممتاز تحت درجات الحرارة المرتفعة",
+      "قوام متماسك ومثالي للحشو",
+      "تعطي قوام كريمي غني للحلويات",
+      "مناسبة للكنافة، القطايف، البسبوسة والتشيزكيك"
     ],
     sizes: ["500 جم", "1 كجم"]
   },
@@ -403,7 +403,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // Mobile Nav Toggle
   const mobileToggle = document.getElementById("mobileToggle");
   const navMenu = document.getElementById("navMenu");
-  
+
   if (mobileToggle && navMenu) {
     mobileToggle.addEventListener("click", () => {
       navMenu.classList.toggle("active");
@@ -512,7 +512,7 @@ function initBrandSwitcher() {
 
         // Smoothly update visual assets
         const data = brandData[theme];
-        
+
         // Header Logo
         if (headerLogo) {
           if (theme === "corporate") {
@@ -535,11 +535,11 @@ function initBrandSwitcher() {
         if (heroBrandCard && heroShowcaseLogo && heroShowcaseTitle && heroShowcaseDesc) {
           heroBrandCard.style.transform = "rotateY(0deg) scale(0.9)";
           heroBrandCard.style.opacity = "0.5";
-          
+
           setTimeout(() => {
             const heroCorpLogos = document.getElementById("heroCorpLogos");
             const heroShowcaseBadge = document.getElementById("heroShowcaseBadge");
-            
+
             if (theme === "corporate") {
               if (heroShowcaseLogo) heroShowcaseLogo.style.display = "none";
               if (heroCorpLogos) heroCorpLogos.style.display = "flex";
@@ -559,7 +559,7 @@ function initBrandSwitcher() {
                 heroShowcaseBadge.textContent = theme === "tayeb" ? "براند سعودي فاخر" : "جودة عالمية مصنعة محلياً";
               }
             }
-            
+
             heroBrandCard.style.transform = "rotateY(-10deg) rotateX(10deg)";
             heroBrandCard.style.opacity = "1";
           }, 300);
@@ -632,10 +632,10 @@ function initSlider() {
   function goToSlide(index) {
     const slides = document.querySelectorAll(".slides-container .slide");
     const thumbs = document.querySelectorAll(".thumbnail-strip .thumb-btn");
-    
+
     if (index < 0) index = totalSlides - 1;
     if (index >= totalSlides) index = 0;
-    
+
     currentSlideIndex = index;
 
     // Toggle active slide
@@ -694,7 +694,7 @@ function initSlider() {
     // Only trigger if section is in viewport
     const rect = slidesContainer.getBoundingClientRect();
     const inViewport = (rect.top >= -200 && rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) + 200);
-    
+
     if (inViewport) {
       if (e.key === "ArrowLeft") {
         goToSlide(currentSlideIndex + 1);
@@ -762,7 +762,7 @@ function renderProducts() {
   // Filter dataset
   const filtered = products.filter(product => {
     // 1. Search Query filter (matches name, description or specs)
-    const matchesSearch = searchQuery === "" || 
+    const matchesSearch = searchQuery === "" ||
       product.name.toLowerCase().includes(searchQuery) ||
       product.description.toLowerCase().includes(searchQuery) ||
       product.specs.some(s => s.toLowerCase().includes(searchQuery));
@@ -794,7 +794,7 @@ function renderProducts() {
   filtered.forEach(product => {
     const card = document.createElement("div");
     card.className = "product-card glass-card scroll-reveal revealed";
-    
+
     // Setup category label in Arabic
     let catLabel = "أجبان";
     if (product.category === "labneh") catLabel = "لبنة";
@@ -891,11 +891,11 @@ function openProductModal(product) {
   // Fill content
   modalProductImage.src = product.image;
   modalProductImage.alt = product.name;
-  
+
   const brandName = product.brand === "tayeb" ? "مملكة الطيب" : "Milko (ميلكو)";
   modalProductBrand.textContent = brandName;
   modalProductTitle.textContent = product.name;
-  
+
   let catLabel = "قسم الأجبان والتراثية";
   if (product.category === "labneh") catLabel = "قسم اللبنة الفاخرة";
   if (product.category === "salad") catLabel = "قسم السلطات الجاهزة للتقديم";
@@ -945,7 +945,7 @@ function openPdfModal(src, title) {
 
   // Handle fallback if load fails (or on mobile device browsers that block frames)
   pdfFallbackLink.href = src;
-  
+
   // Basic frame load checking
   pdfIframe.onerror = () => {
     pdfIframe.style.display = "none";
