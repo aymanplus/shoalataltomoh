@@ -1,4 +1,9 @@
 /* ==========================================================================
+   Maintenance Configuration
+   ========================================================================== */
+const IS_MAINTENANCE_MODE = true; // اجعلها true لتفعيل صفحة الصيانة، أو false لإلغائها
+
+/* ==========================================================================
    Product Database
    ========================================================================== */
 const products = [
@@ -400,6 +405,12 @@ const totalSlides = 13;
    DOM Elements
    ========================================================================== */
 document.addEventListener("DOMContentLoaded", () => {
+  // Check if maintenance mode is enabled
+  if (typeof IS_MAINTENANCE_MODE !== 'undefined' && IS_MAINTENANCE_MODE) {
+    showMaintenanceScreen();
+    return;
+  }
+
   // Mobile Nav Toggle
   const mobileToggle = document.getElementById("mobileToggle");
   const navMenu = document.getElementById("navMenu");
@@ -1016,4 +1027,57 @@ function initScrollReveal() {
     // Fallback if browser doesn't support observer
     reveals.forEach(el => el.classList.add("revealed"));
   }
+}
+
+/* ==========================================================================
+   Maintenance Mode Screen
+   ========================================================================== */
+function showMaintenanceScreen() {
+  // Add active class to body to disable scrolling
+  document.body.classList.add("maintenance-active");
+
+  // Create the overlay container
+  const overlay = document.createElement("div");
+  overlay.className = "maintenance-overlay";
+
+  // Set HTML content for maintenance screen
+  overlay.innerHTML = `
+    <div class="maintenance-card glass-card">
+      <div class="maintenance-logo">
+        <i class="fa-solid fa-gears maintenance-icon"></i>
+      </div>
+      <h1 class="maintenance-title">الموقع تحت الصيانة حالياً</h1>
+      <p class="maintenance-desc">
+        نعمل حالياً على تحديث وتطوير موقع <strong>شركة شعلة الطموح التجارية</strong> لنقدم لكم تجربة أفضل وأكثر سلاسة.
+        <br>نعتذر عن هذا التوقف المؤقت ونعدكم بالعودة قريباً جداً.
+      </p>
+      
+      <div class="maintenance-divider"></div>
+      
+      <div class="maintenance-contact-section">
+        <h3>لطلبات التوريد والمبيعات العاجلة، يسعدنا تواصلكم المباشر معنا:</h3>
+        <div class="maintenance-contact-grid">
+          <a href="https://wa.me/966599133442?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D9%8B%20%D8%B4%D8%B9%D9%84%D9%87%20%D8%A7%D9%84%D8%B7%D9%85%D9%88%D8%AD%D8%8C%20%D8%A3%D9%88%D8%AF%20%D8%A7%D9%84%D8%A7%D8%B3%D8%AA%D9%81%D8%B3%D8%A7%D8%B1%20%D8%B9%D9%86%20%D9%85%D9%86%D8%AA%D8%AC%D8%A7%D8%AA%D9%83%D9%85%20%D9%88%D8%B7%D9%84%D8%A8%20%D8%A7%D9%84%D8%AA%D9%88%D8%B1%D9%8A%D8%AF." target="_blank" class="maintenance-btn btn-whatsapp">
+            <i class="fa-brands fa-whatsapp"></i> م/ علاء كتوري (واتساب)
+          </a>
+          <a href="https://wa.me/966540221102?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D9%8B%20%D8%B4%D8%B9%D9%84%D9%87%20%D8%A7%D9%84%D8%B7%D9%85%D9%88%D8%AD%D8%8C%20%D8%A3%D9%88%D8%AF%20%D8%A7%D9%84%D8%A7%D8%B3%D8%AA%D9%81%D8%B3%D8%A7%D8%B1%20%D8%B9%D9%86%20%D9%85%D9%86%D8%AA%D8%AC%D8%A7%D8%AA%D9%83%D9%85%20%D9%88%D8%B7%D9%84%D8%A8%20%D8%A7%D9%84%D8%AA%D9%88%D8%B1%D9%8A%D8%AF." target="_blank" class="maintenance-btn btn-whatsapp">
+            <i class="fa-brands fa-whatsapp"></i> م/ أحمد إسماعيل (واتساب)
+          </a>
+          <a href="tel:+966599133442" class="maintenance-btn btn-phone">
+            <i class="fa-solid fa-phone"></i> الاتصال الهاتفي المباشر
+          </a>
+          <a href="mailto:Shalat.t.co@gmail.com" class="maintenance-btn btn-email">
+            <i class="fa-solid fa-envelope"></i> البريد الإلكتروني
+          </a>
+        </div>
+      </div>
+      
+      <div class="maintenance-footer">
+        جميع الحقوق محفوظة &copy; 2026 شركة شعلة الطموح التجارية
+      </div>
+    </div>
+  `;
+
+  // Append overlay to the body
+  document.body.appendChild(overlay);
 }
